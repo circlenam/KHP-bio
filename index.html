@@ -816,7 +816,7 @@ footer {
 function loadYT() {
   var el = document.getElementById('yt-player');
   var iframe = document.createElement('iframe');
-  iframe.src = 'https://www.youtube.com/embed/cgj73K86CjQ?autoplay=1&rel=0&modestbranding=1';
+  iframe.src = 'https://www.youtube.com/embed/cgj73K86CjQ?autoplay=1&mute=1&rel=0&modestbranding=1';
   iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
   iframe.allowFullscreen = true;
   iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
@@ -824,6 +824,7 @@ function loadYT() {
   el.appendChild(iframe);
   el.onclick = null;
 }
+window.addEventListener('load', loadYT);
 </script>
 </body>
 </html>
