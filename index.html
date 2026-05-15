@@ -5,157 +5,214 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KHP 훈련프로그램 HUB | 재능대학교 K-하이테크플랫폼사업단</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
-
 :root {
-  --bg:#060d1a;--bg2:#0c1427;--surface:#0f1c30;--surface2:#111e33;
-  --border:rgba(255,255,255,0.07);--border-hi:rgba(255,255,255,0.15);
-  --text:#e4eeff;--muted:#5a7299;
-  --blue:#4a9eff;--blue-dim:rgba(74,158,255,0.10);--blue-mid:rgba(74,158,255,0.20);
-  --cyan:#00d4e8;--cyan-dim:rgba(0,212,232,0.10);
-  --green:#00d48a;--green-dim:rgba(0,212,138,0.10);
-  --orange:#ff7a3d;--orange-dim:rgba(255,122,61,0.10);
-  --purple:#9b6dff;--purple-dim:rgba(155,109,255,0.10);
-  --yellow:#f0b429;--pink:#ff4d8d;
+  --navy:#0d2257; --blue:#1e5bbf; --blue-light:#3d82e8;
+  --cyan:#00c6e0; --orange:#ff6b1a; --orange-light:#ff8c42;
+  --white:#f8faff; --gray-mid:#8fa3c8; --gray-light:#e8eef8;
+  --surface:rgba(255,255,255,0.035); --border:rgba(0,198,224,0.12); --border-hi:rgba(0,198,224,0.35);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;overflow-x:hidden;}
+body{
+  background:#080c14;
+  color:var(--white);
+  font-family:'Noto Sans KR',sans-serif;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,198,224,0.055) 1px,transparent 1px),linear-gradient(90deg,rgba(0,198,224,0.055) 1px,transparent 1px);
+  background-size:50px 50px;pointer-events:none;z-index:0;
+}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(6,13,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:58px;}
-.nav-logo{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;color:var(--cyan);font-weight:500;}
-.nav-logo strong{display:block;font-size:0.8rem;color:var(--text);}
+/* ── NAV (khp-loc 동일) ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(5,8,16,0.95);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,198,224,0.14);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:62px;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--cyan);letter-spacing:0.04em;}
+.nav-logo strong{color:var(--white);font-weight:700;font-size:0.9rem;font-family:'Noto Sans KR',sans-serif;}
 .nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;transition:color .2s;}
-.nav-links a:hover{color:var(--blue);}
-.nav-cta{background:var(--blue);color:#fff;padding:7px 20px;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none;transition:opacity .2s,transform .2s;box-shadow:0 3px 12px rgba(26,92,232,0.25);}
+.nav-links a{color:var(--gray-mid);text-decoration:none;font-size:0.84rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-cta{background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;padding:8px 22px;border-radius:6px;font-size:0.82rem;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(255,107,26,0.35);transition:opacity .2s,transform .2s;}
 .nav-cta:hover{opacity:.9;transform:translateY(-1px);}
-@media(max-width:700px){.nav-links{display:none;}}
+@media(max-width:900px){.nav-links{display:none;}}
 
-.hero{padding:100px 6vw 70px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center;max-width:1100px;margin:0 auto;}
-@media(max-width:800px){.hero{grid-template-columns:1fr;padding:90px 5vw 50px;}}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-dim);border:1px solid var(--blue-mid);color:var(--blue);font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;padding:5px 14px;border-radius:100px;margin-bottom:20px;}
-.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:blink 1.8s ease infinite;}
+/* ── HERO (khp-loc 구조 그대로) ── */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 6vw 80px;
+  overflow:hidden;
+}
+
+/* 우측 영상 — absolute (khp-loc의 chip-anim처럼) */
+.hero-video-col{
+  position:absolute;
+  right:5vw;top:50%;transform:translateY(-50%);
+  width:40vw;max-width:520px;
+  z-index:2;
+}
+@media(max-width:900px){
+  .hero-video-col{position:static;transform:none;width:100%;max-width:100%;margin-top:36px;}
+}
+
+.video-label-row{display:flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gray-mid);letter-spacing:0.08em;margin-bottom:10px;}
+.video-label-row::before{content:'';width:7px;height:7px;border-radius:50%;background:#e03030;animation:blink 1.5s infinite;flex-shrink:0;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-.hero-title{font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.2;letter-spacing:-0.02em;margin-bottom:6px;color:var(--text);}
-.hero-title .t-org{display:block;font-size:0.45em;font-weight:700;color:var(--blue);letter-spacing:0.01em;margin-bottom:8px;}
-.hero-title .t-sub{display:block;font-size:0.55em;font-weight:700;color:var(--muted);margin-top:6px;}
-.hero-desc{font-size:0.9rem;color:var(--muted);line-height:1.75;margin:18px 0 26px;max-width:480px;}
-.hero-stats{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:26px;}
-.hstat-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--blue);line-height:1;}
-.hstat-label{font-size:0.68rem;color:var(--muted);margin-top:2px;font-weight:500;}
-.hero-tags{display:flex;gap:8px;flex-wrap:wrap;}
-.htag{font-size:0.68rem;font-weight:600;padding:4px 12px;border-radius:100px;border:1px solid;letter-spacing:0.04em;}
-.htag.c1{color:var(--blue);border-color:rgba(26,92,232,.3);background:var(--blue-dim);}
-.htag.c2{color:var(--green);border-color:rgba(0,168,107,.3);background:var(--green-dim);}
-.htag.c3{color:var(--orange);border-color:rgba(224,90,16,.3);background:var(--orange-dim);}
 
-.hero-video-col{display:flex;flex-direction:column;gap:10px;}
-.video-label-row{display:flex;align-items:center;gap:7px;font-size:0.7rem;color:var(--muted);font-weight:600;font-family:'DM Mono',monospace;letter-spacing:0.06em;}
-.video-label-row::before{content:'';width:7px;height:7px;border-radius:50%;background:#e03030;animation:blink 1.5s infinite;}
-.video-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border-hi);background:#000;cursor:pointer;aspect-ratio:16/9;box-shadow:0 8px 32px rgba(26,92,232,0.14);transition:box-shadow .25s;}
-.video-wrap:hover{box-shadow:0 12px 40px rgba(26,92,232,0.22);}
+.video-wrap{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border-hi);background:#000;cursor:pointer;aspect-ratio:16/9;box-shadow:0 8px 32px rgba(0,0,0,0.5);transition:box-shadow .25s,transform .25s;}
+.video-wrap:hover{box-shadow:0 16px 48px rgba(0,198,224,0.25);transform:translateY(-3px);}
 .video-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s;}
-.video-wrap:hover img{opacity:.85;}
+.video-wrap:hover img{opacity:.8;}
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
-.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(26,92,232,0.88);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 4px 20px rgba(26,92,232,0.4);transition:transform .2s,background .2s;}
-.video-wrap:hover .play-btn{background:var(--blue);transform:translate(-50%,-50%) scale(1.08);}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(0,198,224,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 4px 20px rgba(0,198,224,0.4);transition:transform .2s,background .2s;}
+.video-wrap:hover .play-btn{background:var(--cyan);transform:translate(-50%,-50%) scale(1.1);}
 .play-btn svg{margin-left:5px;}
-.hero-info-pill{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.75rem;color:var(--muted);}
+.hero-info-pill{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--gray-mid);margin-top:10px;letter-spacing:0.03em;}
 
-.programs-section{padding:80px 6vw;max-width:1100px;margin:0 auto;}
-.sec-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;color:var(--blue);margin-bottom:10px;display:block;}
-.sec-divider{width:40px;height:2.5px;background:linear-gradient(90deg,var(--blue),transparent);border-radius:2px;margin-bottom:14px;}
-.sec-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;line-height:1.2;margin-bottom:10px;}
-.sec-desc{color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:560px;margin-bottom:44px;}
+/* 좌측 콘텐츠 (khp-loc hero-content 그대로) */
+.hero-content{position:relative;z-index:2;max-width:560px;}
+
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;animation:fadeUp .6s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hbadge{display:inline-flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;padding:5px 14px;border-radius:4px;border:1px solid;}
+.hbadge.b-cyan{color:var(--cyan);border-color:rgba(0,198,224,0.35);background:rgba(0,198,224,0.08);}
+.hbadge.b-cyan::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 1.8s infinite;flex-shrink:0;}
+.hbadge.b-orange{background:var(--orange);color:#fff;border-color:var(--orange);}
+.hbadge.b-orange::before{content:'🎓';font-size:0.7rem;}
+
+.hero-title{
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);
+  font-weight:900;line-height:1.12;
+  letter-spacing:-0.02em;
+  margin-bottom:16px;
+  animation:fadeUp .7s ease .1s both;
+}
+.line-white{display:block;color:var(--white);}
+.line-cyan{display:block;color:var(--cyan);text-shadow:0 0 30px rgba(0,198,224,0.35);}
+.line-sub{display:block;font-size:0.42em;font-weight:700;color:var(--gray-mid);margin-top:10px;letter-spacing:0.04em;font-family:'Space Mono',monospace;}
+
+.hero-tagline{font-family:'Noto Serif KR',serif;font-size:1rem;color:var(--orange-light);margin-bottom:14px;font-style:italic;animation:fadeUp .7s ease .15s both;}
+
+.hero-desc{font-size:0.92rem;color:var(--gray-mid);line-height:1.75;margin-bottom:32px;max-width:500px;animation:fadeUp .7s ease .2s both;}
+
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both;}
+.htag{font-size:0.68rem;font-weight:700;padding:5px 14px;border-radius:4px;border:1px solid;letter-spacing:0.06em;}
+.htag.c1{color:var(--cyan);border-color:rgba(0,198,224,0.35);background:rgba(0,198,224,0.08);}
+.htag.c2{color:#00e5a0;border-color:rgba(0,229,160,0.35);background:rgba(0,229,160,0.08);}
+.htag.c3{color:var(--orange-light);border-color:rgba(255,140,66,0.35);background:rgba(255,107,26,0.08);}
+
+/* ── SECTIONS ── */
+.programs-section{position:relative;z-index:1;padding:80px 6vw;max-width:1100px;margin:0 auto;}
+.section-full{position:relative;z-index:1;padding:80px 6vw;background:rgba(255,255,255,0.025);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.section-full .inner{max-width:1100px;margin:0 auto;}
+.info-section{position:relative;z-index:1;padding:80px 6vw;max-width:1100px;margin:0 auto;}
+
+.sec-label{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;color:var(--cyan);margin-bottom:12px;display:block;}
+.sec-divider{width:48px;height:3px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px;margin-bottom:16px;}
+.sec-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;line-height:1.2;margin-bottom:12px;color:var(--white);}
+.sec-desc{color:var(--gray-mid);font-size:0.9rem;line-height:1.7;max-width:560px;margin-bottom:48px;}
+
+/* ── PROGRAM CARDS ── */
 .prog-group{margin-bottom:48px;}
 .prog-group-label{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.prog-group-label .gl-text{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;color:var(--muted);white-space:nowrap;}
+.prog-group-label .gl-text{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;color:var(--gray-mid);white-space:nowrap;}
 .prog-group-label::after{content:'';flex:1;height:1px;background:var(--border);}
-.prog-cards{display:flex;flex-direction:column;gap:12px;}
+.prog-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:720px){.prog-cards{grid-template-columns:1fr;}}
 
-.pcard{display:flex;align-items:stretch;background:var(--surface2);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);position:relative;transition:border-color .22s,transform .22s,box-shadow .22s;}
-.pcard:hover{border-color:var(--border-hi);transform:translateY(-3px);box-shadow:0 12px 36px rgba(26,92,232,0.10);}
-.pcard.disabled{opacity:.55;pointer-events:none;}
+.pcard{display:flex;align-items:stretch;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--white);position:relative;transition:border-color .22s,transform .22s,box-shadow .22s;}
+.pcard:hover{border-color:var(--border-hi);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.3);}
+.pcard.disabled{opacity:.5;pointer-events:none;}
 .pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 2px 2px 0;}
-.pcard.col-blue::before{background:var(--blue);}
-.pcard.col-green::before{background:var(--green);}
+.pcard.col-blue::before{background:var(--cyan);}
+.pcard.col-green::before{background:#00e5a0;}
 .pcard.col-orange::before{background:var(--orange);}
-.pcard.col-purple::before{background:var(--purple);}
-.pcard.col-yellow::before{background:#e8a800;}
-.pcard.col-pink::before{background:var(--pink);}
-.pcard-num{width:54px;min-width:54px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.6rem;opacity:.18;padding-left:4px;}
-.pcard.col-blue .pcard-num{color:var(--blue);}
-.pcard.col-green .pcard-num{color:var(--green);}
+.pcard.col-purple::before{background:#9b6dff;}
+.pcard.col-yellow::before{background:#ffd166;}
+.pcard.col-pink::before{background:#ff4d8d;}
+.pcard-num{width:54px;min-width:54px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:1.4rem;font-weight:700;opacity:.2;color:var(--cyan);}
+.pcard.col-green .pcard-num{color:#00e5a0;}
 .pcard.col-orange .pcard-num{color:var(--orange);}
-.pcard.col-purple .pcard-num{color:var(--purple);}
-.pcard.col-yellow .pcard-num{color:#e8a800;}
-.pcard.col-pink .pcard-num{color:var(--pink);}
+.pcard.col-purple .pcard-num{color:#9b6dff;}
+.pcard.col-yellow .pcard-num{color:#ffd166;}
+.pcard.col-pink .pcard-num{color:#ff4d8d;}
 .pcard-icon{width:48px;min-width:48px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;}
 .pcard-body{flex:1;padding:18px 14px 18px 0;}
 .pcard-top{display:flex;align-items:center;gap:10px;margin-bottom:5px;flex-wrap:wrap;}
-.pcard-title{font-size:0.92rem;font-weight:700;color:var(--text);line-height:1.3;}
-.pcard-status{font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:600;letter-spacing:0.12em;padding:3px 9px;border-radius:100px;white-space:nowrap;}
-.status-live{background:rgba(0,168,107,.12);color:var(--green);border:1px solid rgba(0,168,107,.3);}
+.pcard-title{font-size:0.92rem;font-weight:700;color:var(--white);line-height:1.3;}
+.pcard-status{font-family:'Space Mono',monospace;font-size:0.56rem;font-weight:700;letter-spacing:0.12em;padding:3px 9px;border-radius:4px;white-space:nowrap;}
+.status-live{background:rgba(0,229,160,0.12);color:#00e5a0;border:1px solid rgba(0,229,160,0.3);}
 .status-live::before{content:'● ';animation:blink 1.5s infinite;}
-.status-soon{background:rgba(200,134,10,.1);color:var(--yellow);border:1px solid rgba(200,134,10,.25);}
-.pcard-desc{font-size:0.78rem;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+.status-soon{background:rgba(255,209,102,0.08);color:#ffd166;border:1px solid rgba(255,209,102,0.2);}
+.pcard-desc{font-size:0.78rem;color:var(--gray-mid);line-height:1.6;margin-bottom:8px;}
 .pcard-chips{display:flex;gap:5px;flex-wrap:wrap;}
-.chip{font-size:0.62rem;font-weight:600;padding:2px 9px;border-radius:4px;background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--border);}
-.pcard-arrow{display:flex;align-items:center;padding-right:18px;font-size:1rem;color:var(--muted);opacity:.3;transition:opacity .2s,transform .2s;}
-.pcard:hover .pcard-arrow{opacity:.8;transform:translate(3px,-3px);}
+.chip{font-size:0.6rem;font-weight:700;padding:2px 9px;border-radius:4px;background:rgba(255,255,255,0.05);color:var(--gray-mid);border:1px solid rgba(255,255,255,0.08);font-family:'Space Mono',monospace;letter-spacing:0.04em;}
+.pcard-arrow{display:flex;align-items:center;padding-right:18px;font-size:1rem;color:var(--gray-mid);opacity:.3;transition:opacity .2s,transform .2s;}
+.pcard:hover .pcard-arrow{opacity:.9;color:var(--cyan);transform:translate(3px,-3px);}
 
-.section-full{padding:80px 6vw;background:var(--bg2);}
-.section-full .inner{max-width:1100px;margin:0 auto;}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
-.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px 22px;transition:border-color .22s,transform .22s,box-shadow .22s;}
-.feat-card:hover{border-color:var(--border-hi);transform:translateY(-4px);box-shadow:0 10px 28px rgba(26,92,232,0.08);}
+/* ── FEATURES ── */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:26px 22px;transition:border-color .22s,transform .22s,box-shadow .22s;}
+.feat-card:hover{border-color:var(--border-hi);transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.3);}
 .feat-icon{font-size:2rem;margin-bottom:12px;display:block;}
-.feat-title{font-size:0.88rem;font-weight:700;margin-bottom:6px;}
-.feat-desc{font-size:0.78rem;color:var(--muted);line-height:1.6;}
-.feat-tag{display:inline-block;margin-top:10px;font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;padding:3px 9px;border-radius:4px;background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-mid);}
+.feat-title{font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--white);}
+.feat-desc{font-size:0.78rem;color:var(--gray-mid);line-height:1.6;}
+.feat-tag{display:inline-block;margin-top:10px;font-family:'Space Mono',monospace;font-size:0.55rem;font-weight:700;letter-spacing:0.12em;padding:3px 9px;border-radius:4px;background:rgba(0,198,224,0.10);color:var(--cyan);border:1px solid rgba(0,198,224,0.25);}
 
-.info-section{padding:80px 6vw;max-width:1100px;margin:0 auto;}
-.free-badge{background:linear-gradient(135deg,rgba(74,158,255,0.08),rgba(0,212,232,0.08));border:1px solid rgba(74,158,255,0.2);border-radius:14px;padding:22px 26px;display:flex;align-items:center;gap:18px;margin-bottom:22px;}
+/* ── INFO ── */
+.free-badge{background:rgba(0,198,224,0.06);border:1px solid rgba(0,198,224,0.2);border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px;margin-bottom:22px;}
 .free-badge .fb-icon{font-size:2rem;flex-shrink:0;}
-.free-badge h3{font-size:0.92rem;font-weight:700;color:var(--blue);margin-bottom:4px;}
-.free-badge p{font-size:0.78rem;color:var(--muted);line-height:1.55;}
+.free-badge h3{font-size:0.92rem;font-weight:700;color:var(--cyan);margin-bottom:4px;}
+.free-badge p{font-size:0.78rem;color:var(--gray-mid);line-height:1.55;}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
-.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 22px;}
-.info-card .ic-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;color:var(--blue);margin-bottom:10px;}
-.ic-item{font-size:0.8rem;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px;}
+.info-card .ic-label{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--cyan);margin-bottom:12px;}
+.ic-item{font-size:0.8rem;color:var(--gray-light);display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
 .ic-item:last-child{border-bottom:none;}
-.ic-item::before{content:'›';color:var(--blue);font-weight:700;flex-shrink:0;}
+.ic-item::before{content:'›';color:var(--cyan);font-weight:700;flex-shrink:0;}
 
-.contact-section{background:#020710;padding:80px 6vw;text-align:center;}
-.contact-section .inner{max-width:700px;margin:0 auto;}
-.contact-section .sec-label{color:rgba(100,180,255,0.7);}
-.contact-section .sec-title{color:#fff;}
-.contact-section .sec-desc{color:rgba(255,255,255,0.45);margin:0 auto 40px;}
+/* ── CONTACT ── */
+.contact-section{position:relative;z-index:1;background:linear-gradient(135deg,#030609 0%,#080c18 100%);padding:80px 6vw;text-align:center;border-top:1px solid var(--border);}
+.contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,198,224,0.08),transparent 70%);pointer-events:none;}
+.contact-section .inner{max-width:700px;margin:0 auto;position:relative;z-index:1;}
+.contact-section .sec-desc{margin:0 auto 40px;}
 .ccard-wrap{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;}
-.ccard{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:20px 22px;text-align:left;min-width:190px;flex:1;max-width:230px;}
+.ccard{background:rgba(255,255,255,0.04);border:1px solid rgba(0,198,224,0.15);border-radius:12px;padding:20px 22px;text-align:left;min-width:190px;flex:1;max-width:230px;transition:border-color .2s;}
+.ccard:hover{border-color:rgba(0,198,224,0.35);}
 .ccard .cc-icon{font-size:1.3rem;margin-bottom:8px;display:block;}
-.ccard .cc-label{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:.12em;color:rgba(100,180,255,0.7);margin-bottom:5px;}
-.ccard .cc-val{font-size:0.86rem;color:#fff;font-weight:600;}
-.ccard .cc-sub{font-size:0.7rem;color:rgba(255,255,255,0.35);margin-top:3px;line-height:1.5;}
-.contact-btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:14px 36px;border-radius:8px;font-size:0.95rem;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(26,92,232,0.35);transition:transform .2s,box-shadow .2s;}
-.contact-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,92,232,0.45);}
+.ccard .cc-label{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:.14em;color:var(--cyan);margin-bottom:5px;}
+.ccard .cc-val{font-size:0.86rem;color:var(--white);font-weight:600;}
+.ccard .cc-sub{font-size:0.7rem;color:var(--gray-mid);margin-top:3px;line-height:1.5;}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;padding:14px 36px;border-radius:8px;font-size:0.95rem;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(255,107,26,0.4);transition:transform .2s,box-shadow .2s;}
+.contact-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,107,26,0.5);}
 
-footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid rgba(255,255,255,0.05);}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:rgba(255,255,255,0.28);letter-spacing:.08em;}
-.footer-logo span{color:var(--blue);}
-.footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);font-family:'DM Mono',monospace;}
+/* ── FOOTER ── */
+footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-logo{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--gray-mid);}
+.footer-logo strong{color:var(--cyan);display:block;font-size:0.82rem;}
+.footer-links{display:flex;gap:22px;}
+.footer-links a{color:var(--gray-mid);text-decoration:none;font-size:0.75rem;transition:color .2s;}
+.footer-links a:hover{color:var(--cyan);}
+.footer-copy{font-size:0.68rem;color:rgba(143,163,200,0.4);font-family:'Space Mono',monospace;}
 
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-@media(max-width:600px){.programs-section,.info-section{padding:60px 5vw;}.hero{gap:28px;}}
-
+@media(max-width:600px){.programs-section,.info-section,.section-full{padding:60px 5vw;}}
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-logo">
     <strong>재능대학교 K-하이테크플랫폼사업단</strong>
@@ -169,27 +226,27 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
   </ul>
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" rel="noopener" class="nav-cta">교육 신청 문의 →</a>
 </nav>
-
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">K-HITECH PLATFORM · JEI UNIVERSITY</div>
-    <h1 class="hero-title">
-      <span class="t-org">재능대학교 K-하이테크플랫폼사업단 훈련과정</span>
-      랩온어칩 · 바이오분석<br>의료설계 · 시뮬레이션
-      <span class="t-sub">실무교육 허브</span>
-    </h1>
-    <p class="hero-desc">바이오·의료기기·진단·제약 분야 전문가를 위한 현장 중심 실무교육 플랫폼입니다. 재직자 환급과정으로 교육비 부담 없이 수강 가능합니다.</p>
-    <div class="hero-stats">
-      <div class="hstat"><div class="hstat-num">6+</div><div class="hstat-label">전문 교육과정</div></div>
-      <div class="hstat"><div class="hstat-num">₩0</div><div class="hstat-label">수강료 (환급과정)</div></div>
-      <div class="hstat"><div class="hstat-num">AI</div><div class="hstat-label">복습 시뮬레이터</div></div>
+<div class="hero" id="home">
+  <!-- 좌측 콘텐츠 -->
+  <div class="hero-content">
+    <div class="hero-badges">
+      <span class="hbadge b-cyan">재직자 환급과정 · 교육비 무료</span>
+      <span class="hbadge b-orange">수강료 전액 지원</span>
     </div>
+    <h1 class="hero-title">
+      <span class="line-white">랩온어칩 · 바이오분석</span>
+      <span class="line-cyan">의료설계 · 시뮬레이션</span>
+      <span class="line-sub">K-하이테크플랫폼 실무교육 허브</span>
+    </h1>
+    <p class="hero-desc">바이오·의료기기·진단·제약 분야에서 활용되는 랩온어칩, ELISA, HPLC, SPR 기반 바이오분석 실무교육 프로그램입니다. 현장 이론교육과 장비 실습 후, AI 복습 시뮬레이터로 반복 학습이 가능합니다.</p>
     <div class="hero-tags">
       <span class="htag c1">재직자 환급과정</span>
       <span class="htag c2">미래인재양성</span>
       <span class="htag c3">교사·학생 대상</span>
     </div>
   </div>
+
+  <!-- 우측 영상 (absolute) -->
   <div class="hero-video-col">
     <div class="video-label-row">K-하이테크플랫폼 소개 영상</div>
     <div class="video-wrap" id="yt-player" onclick="loadYT()">
@@ -197,10 +254,12 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
       <div class="play-btn"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><polygon points="6,4 20,11 6,18" fill="#fff"/></svg></div>
     </div>
     <div class="hero-info-pill">🏫 재능대학교 바이오테크과 · AI-바이오분석특화연구소</div>
-    <div class="hero-info-pill">⚙️ K-하이테크플랫폼사업단</div>
+    <div class="hero-info-pill" style="margin-top:6px;">⚙️ K-하이테크플랫폼사업단</div>
   </div>
 </div>
 
+
+<!-- ── PROGRAMS ── -->
 <div class="programs-section" id="programs">
   <div class="reveal">
     <span class="sec-label">// TRAINING PROGRAMS</span>
@@ -218,9 +277,10 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
           <div class="pcard-top"><div class="pcard-title">랩온어칩 설계 및 제조 — 연구자·개발자 맞춤형 응용교육</div><span class="pcard-status status-live">LIVE</span></div>
           <div class="pcard-desc">3D프린팅 기반 마이크로채널 설계부터 마스터몰드 제작까지. 재직자 환급과정 (무료).</div>
           <div class="pcard-chips"><span class="chip">Fusion 360</span><span class="chip">3D프린팅</span><span class="chip">PDMS</span><span class="chip">마이크로플루이딕스</span></div>
-        </div>
-        <div class="pcard-arrow">↗</div>
+        </div><div class="pcard-arrow">↗</div>
       </a>
+      <!-- 우측 빈 자리 채움용 더미 (1단 그룹은 span) -->
+      <div style="visibility:hidden;pointer-events:none;" class="pcard"></div>
     </div>
   </div>
 
@@ -233,27 +293,26 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
           <div class="pcard-top"><div class="pcard-title">ELISA 기본 및 응용교육 — 다양한 바이오마커 정량분석</div><span class="pcard-status status-live">LIVE</span></div>
           <div class="pcard-desc">샌드위치·경쟁 ELISA 원리부터 바이오마커 응용 및 AI 복습 시뮬레이터 제공.</div>
           <div class="pcard-chips"><span class="chip">ELISA</span><span class="chip">바이오마커</span><span class="chip">SOP</span><span class="chip">AI 복습</span></div>
-        </div>
-        <div class="pcard-arrow">↗</div>
+        </div><div class="pcard-arrow">↗</div>
       </a>
       <div class="pcard col-orange disabled">
         <div class="pcard-num">03</div><div class="pcard-icon">⚗️</div>
         <div class="pcard-body">
           <div class="pcard-top"><div class="pcard-title">HPLC 이론 및 실습교육 — 함량분석·불순도평가·밸리데이션</div><span class="pcard-status status-soon">COMING SOON</span></div>
           <div class="pcard-desc">RP·SEC 컬럼 실습, 표준품 분석, 시험분석법 밸리데이션(ICH Q2) 및 SOP 게임 복습.</div>
-          <div class="pcard-chips"><span class="chip">HPLC</span><span class="chip">RP Column</span><span class="chip">SEC</span><span class="chip">ICH Q2</span><span class="chip">Validation</span></div>
-        </div>
-        <div class="pcard-arrow">↗</div>
+          <div class="pcard-chips"><span class="chip">HPLC</span><span class="chip">RP Column</span><span class="chip">SEC</span><span class="chip">ICH Q2</span></div>
+        </div><div class="pcard-arrow">↗</div>
       </div>
       <div class="pcard col-purple disabled">
         <div class="pcard-num">04</div><div class="pcard-icon">📡</div>
         <div class="pcard-body">
           <div class="pcard-top"><div class="pcard-title">바이오센서 기반 SPR 단백질 정량분석</div><span class="pcard-status status-soon">COMING SOON</span></div>
           <div class="pcard-desc">Surface Plasmon Resonance 원리·실습, 단백질 결합 동역학 분석, SOP 복습 포함.</div>
-          <div class="pcard-chips"><span class="chip">SPR</span><span class="chip">단백질정량</span><span class="chip">바이오센서</span><span class="chip">결합동역학</span></div>
-        </div>
-        <div class="pcard-arrow">↗</div>
+          <div class="pcard-chips"><span class="chip">SPR</span><span class="chip">단백질정량</span><span class="chip">바이오센서</span></div>
+        </div><div class="pcard-arrow">↗</div>
       </div>
+      <!-- 빈자리 -->
+      <div style="visibility:hidden;pointer-events:none;" class="pcard"></div>
     </div>
   </div>
 
@@ -265,23 +324,22 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
         <div class="pcard-body">
           <div class="pcard-top"><div class="pcard-title">SolidWorks 사출금형 결함예측 시뮬레이션 · 금형 최적화 설계</div><span class="pcard-status status-soon">COMING SOON</span></div>
           <div class="pcard-desc">Plastics 모듈 기반 웰드라인·수축·변형 예측, 금형 구조 최적화 설계 실습.</div>
-          <div class="pcard-chips"><span class="chip">SolidWorks</span><span class="chip">Plastics</span><span class="chip">사출성형</span><span class="chip">금형최적화</span></div>
-        </div>
-        <div class="pcard-arrow">↗</div>
+          <div class="pcard-chips"><span class="chip">SolidWorks</span><span class="chip">Plastics</span><span class="chip">사출성형</span></div>
+        </div><div class="pcard-arrow">↗</div>
       </div>
       <div class="pcard col-pink disabled">
         <div class="pcard-num">06</div><div class="pcard-icon">🚁</div>
         <div class="pcard-body">
           <div class="pcard-top"><div class="pcard-title">드론 구조·유체 시뮬레이션 — 재료역학·기계요소설계 이론 및 실습</div><span class="pcard-status status-soon">COMING SOON</span></div>
           <div class="pcard-desc">드론 프레임 구조해석, CFD 기반 유동해석, 재료역학·기계요소 이론 연계 실습.</div>
-          <div class="pcard-chips"><span class="chip">CFD</span><span class="chip">구조해석</span><span class="chip">재료역학</span><span class="chip">드론설계</span></div>
-        </div>
-        <div class="pcard-arrow">↗</div>
+          <div class="pcard-chips"><span class="chip">CFD</span><span class="chip">구조해석</span><span class="chip">재료역학</span></div>
+        </div><div class="pcard-arrow">↗</div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ── FEATURES ── -->
 <div class="section-full" id="features">
   <div class="inner">
     <div class="reveal">
@@ -301,6 +359,7 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
   </div>
 </div>
 
+<!-- ── INFO ── -->
 <div class="info-section" id="info">
   <div class="reveal">
     <span class="sec-label">// 지원 안내</span>
@@ -310,7 +369,7 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
   </div>
   <div class="free-badge reveal">
     <div class="fb-icon">🎓</div>
-    <div><h3>재직자 환급과정 — 교육비 전액 무료</h3><p>고용보험 가입 재직자라면 교육비 환급 혜택을 받을 수 있습니다. 중소기업·스타트업·연구자 대상 시작품 제작 장비도 무료로 지원합니다.</p></div>
+    <div><h3>재직자 환급과정 — 교육비 전액 무료</h3><p>고용보험 가입 재직자라면 교육비 환급 혜택을 받을 수 있습니다. 시작품 제작 장비도 무료로 지원합니다.</p></div>
   </div>
   <div class="info-grid reveal">
     <div class="info-card">
@@ -330,26 +389,39 @@ footer{background:#080f20;padding:30px 6vw;display:flex;align-items:center;justi
   </div>
 </div>
 
+<!-- ── CONTACT ── -->
 <div class="contact-section" id="contact">
   <div class="inner">
     <div class="reveal">
       <span class="sec-label">// 문의 · 신청</span>
-      <div class="sec-divider" style="background:linear-gradient(90deg,rgba(100,180,255,0.6),transparent);"></div>
+      <div class="sec-divider" style="background:linear-gradient(90deg,rgba(0,198,224,0.6),transparent);margin:0 auto 16px;"></div>
       <h2 class="sec-title">지금 바로 신청하세요</h2>
-      <p class="sec-desc">교육 신청, 일정 협의, 환급과정 관련 문의는 아래 채널을 통해 연락 주시기 바랍니다. 바이오분석 교육운영팀이 신속히 안내드립니다.</p>
+      <p class="sec-desc">교육 신청, 일정 협의, 환급과정 관련 문의는 아래 채널을 통해 연락 주시기 바랍니다.</p>
     </div>
     <div class="ccard-wrap reveal">
       <div class="ccard"><span class="cc-icon">📧</span><div class="cc-label">EMAIL</div><div class="cc-val">namjh@jeiu.ac.kr</div><div class="cc-sub">문의 당일 내 답변 가능</div></div>
       <div class="ccard"><span class="cc-icon">🌐</span><div class="cc-label">WEBSITE</div><div class="cc-val">jeiu-khp.com</div><div class="cc-sub">K-하이테크플랫폼사업단 공식 홈페이지</div></div>
       <div class="ccard"><span class="cc-icon">📍</span><div class="cc-label">LOCATION</div><div class="cc-val">재능대학교 혁신관 1층</div><div class="cc-sub">인천광역시 · 제물포역 도보 15분</div></div>
     </div>
-    <div class="reveal"><a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" rel="noopener" class="contact-btn">📋 교육 신청 문의하기</a></div>
+    <div class="reveal">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" rel="noopener" class="contact-btn">📋 교육 신청 문의하기</a>
+    </div>
   </div>
 </div>
 
+<!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-logo">KHP<span>·</span>JEI UNIVERSITY</div>
-  <div class="footer-copy">재능대학교 K-하이테크플랫폼사업단 · AI-바이오분석특화연구소 · © 2026</div>
+  <div class="footer-logo">
+    <strong>재능대학교 K-하이테크플랫폼사업단</strong>
+    JEI University · K-Hitech Platform
+  </div>
+  <div class="footer-links">
+    <a href="#programs">교육과정</a>
+    <a href="#features">교육특징</a>
+    <a href="#info">지원안내</a>
+    <a href="mailto:namjh@jeiu.ac.kr">이메일 문의</a>
+  </div>
+  <div class="footer-copy">© 2026 재능대학교 K-하이테크플랫폼사업단. All rights reserved.</div>
 </footer>
 
 <script>
@@ -360,30 +432,26 @@ function loadYT() {
   iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
   iframe.allowFullscreen = true;
   iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
-  el.innerHTML = '';
-  el.appendChild(iframe);
-  el.onclick = null;
+  el.innerHTML = ''; el.appendChild(iframe); el.onclick = null;
 }
 window.addEventListener('load', loadYT);
-
 const reveals = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
-}, {threshold: 0.08});
+}, {threshold:0.08});
 reveals.forEach(el => obs.observe(el));
-
-document.querySelectorAll('.prog-cards, .feat-grid').forEach(grid => {
-  Array.from(grid.children).forEach((card, i) => {
-    card.style.transitionDelay = (i * 0.07) + 's';
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(14px)';
-    card.style.transition = 'opacity .45s ease, transform .45s ease, border-color .22s, box-shadow .22s';
+document.querySelectorAll('.prog-cards,.feat-grid').forEach(grid => {
+  Array.from(grid.children).forEach((card,i) => {
+    if(card.style.visibility==='hidden') return;
+    card.style.transitionDelay=(i*0.07)+'s';
+    card.style.opacity='0'; card.style.transform='translateY(14px)';
+    card.style.transition='opacity .45s ease,transform .45s ease,border-color .22s,box-shadow .22s';
   });
   new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if(e.isIntersecting) Array.from(e.target.children).forEach(c => { c.style.opacity='1'; c.style.transform='translateY(0)'; });
+      if(e.isIntersecting) Array.from(e.target.children).forEach(c=>{c.style.opacity='1';c.style.transform='translateY(0)';});
     });
-  }, {threshold: 0.08}).observe(grid);
+  },{threshold:0.08}).observe(grid);
 });
 </script>
 
