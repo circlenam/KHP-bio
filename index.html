@@ -7,216 +7,188 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* ── HPLC-style 변수 ── */
 :root {
-  --navy:#0d2257; --blue:#1e5bbf; --blue-light:#3d82e8;
-  --cyan:#00c6e0; --orange:#ff6b1a; --orange-light:#ff8c42;
-  --white:#f8faff; --gray-mid:#8fa3c8; --gray-light:#e8eef8;
-  --surface:rgba(255,255,255,0.035); --border:rgba(0,198,224,0.12); --border-hi:rgba(0,198,224,0.35);
+  --bg: #060b18;
+  --bg2: #0a1020;
+  --surface: rgba(255,255,255,0.04);
+  --surface2: rgba(255,255,255,0.07);
+  --border: rgba(0,198,224,0.12);
+  --border-hi: rgba(0,198,224,0.35);
+  --text: #e8f0ff;
+  --muted: #7a9ab8;
+  --cyan: #00c6e0;
+  --cyan2: #00e5ff;
+  --orange: #ff6b1a;
+  --orange2: #ff8c42;
+  --green: #00e5a0;
+  --purple: #9b6dff;
+  --yellow: #ffd166;
+  --pink: #ff4d8d;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{
-  background:#080c14;
-  color:var(--white);
-  font-family:'Noto Sans KR',sans-serif;
-  overflow-x:hidden;
-  min-height:100vh;
-}
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:linear-gradient(rgba(0,198,224,0.055) 1px,transparent 1px),linear-gradient(90deg,rgba(0,198,224,0.055) 1px,transparent 1px);
-  background-size:50px 50px;pointer-events:none;z-index:0;
-}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans KR",sans-serif;overflow-x:hidden;min-height:100vh;}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(0,198,224,0.04)1px,transparent 1px),linear-gradient(90deg,rgba(0,198,224,0.04)1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0;}
 
-/* ── NAV (khp-loc 동일) ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:999;
-  background:rgba(5,8,16,0.95);backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(0,198,224,0.14);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 5vw;height:62px;
-}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--cyan);letter-spacing:0.04em;}
-.nav-logo strong{color:var(--white);font-weight:700;font-size:0.9rem;font-family:'Noto Sans KR',sans-serif;}
+/* ── NAV (HPLC 그대로) ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(6,11,24,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:60px;}
+.nav-logo{font-family:"Space Mono",monospace;font-size:0.78rem;font-weight:700;color:var(--cyan);letter-spacing:0.06em;}
+.nav-logo strong{color:var(--text);font-size:0.82rem;font-family:"Noto Sans KR",sans-serif;margin-right:6px;}
 .nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{color:var(--gray-mid);text-decoration:none;font-size:0.84rem;font-weight:500;transition:color .2s;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;transition:color .2s;}
 .nav-links a:hover{color:var(--cyan);}
-.nav-cta{background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;padding:8px 22px;border-radius:6px;font-size:0.82rem;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(255,107,26,0.35);transition:opacity .2s,transform .2s;}
+.nav-cta{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff;padding:8px 20px;border-radius:6px;font-size:0.8rem;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,26,0.35);transition:opacity .2s,transform .2s;}
 .nav-cta:hover{opacity:.9;transform:translateY(-1px);}
 @media(max-width:900px){.nav-links{display:none;}}
 
-/* ── HERO (khp-loc 구조 그대로) ── */
-.hero{
-  position:relative;z-index:1;
-  min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:120px 6vw 80px;
-  overflow:hidden;
-}
+/* ── HERO (HPLC 스타일) ── */
+.hero{position:relative;z-index:1;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;padding:100px 6vw 60px;max-width:1200px;margin:0 auto;overflow:hidden;}
+.hero-content{position:relative;z-index:2;max-width:100%;}
 
-/* 우측 영상 — absolute (khp-loc의 chip-anim처럼) */
-.hero-video-col{
-  position:absolute;
-  right:5vw;top:50%;transform:translateY(-50%);
-  width:40vw;max-width:520px;
-  z-index:2;
-}
-@media(max-width:900px){
-  .hero-video-col{position:static;transform:none;width:100%;max-width:100%;margin-top:36px;}
-}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-family:"Space Mono",monospace;font-size:0.65rem;letter-spacing:0.18em;color:var(--cyan);opacity:.8;}
+.hero-eyebrow::before{content:"";width:32px;height:1px;background:var(--cyan);}
 
-.video-label-row{display:flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gray-mid);letter-spacing:0.08em;margin-bottom:10px;}
-.video-label-row::before{content:'';width:7px;height:7px;border-radius:50%;background:#e03030;animation:blink 1.5s infinite;flex-shrink:0;}
+.hero-title{font-size:clamp(1.6rem,2.8vw,2.6rem);font-weight:900;line-height:1.18;letter-spacing:-0.02em;margin-bottom:8px;}
+.hero-title .t1{display:block;color:var(--text);}
+.hero-title .t2{display:block;color:var(--cyan);text-shadow:0 0 40px rgba(0,198,224,0.3);}
+.hero-title .t3{display:block;color:var(--text);font-size:.65em;margin-top:6px;}
+
+.hero-tagline{font-family:"Noto Serif KR",serif;font-size:1.05rem;color:var(--orange2);font-style:italic;margin:16px 0 20px;}
+
+.hero-desc{font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:36px;max-width:580px;}
+
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px;}
+.btn-primary{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff;padding:13px 32px;border-radius:8px;font-size:0.92rem;font-weight:700;text-decoration:none;box-shadow:0 5px 20px rgba(255,107,26,0.4);transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,26,0.5);}
+.btn-secondary{border:1.5px solid var(--cyan);color:var(--cyan);padding:12px 26px;border-radius:8px;font-size:0.88rem;font-weight:600;text-decoration:none;transition:background .2s;}
+.btn-secondary:hover{background:rgba(0,198,224,0.08);}
+
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
+.hstat{text-align:left;}
+.hstat-num{font-family:"Space Mono",monospace;font-size:2rem;font-weight:700;color:var(--cyan);line-height:1;}
+.hstat-label{font-size:0.68rem;color:var(--muted);margin-top:4px;letter-spacing:.04em;}
+
+/* 우측 영상 absolute (HPLC처럼) */
+.hero-video-col{position:relative;width:100%;z-index:2;}
+@media(max-width:900px){.hero{grid-template-columns:1fr;}.hero-video-col{margin-top:0;}}
+.video-label-row{display:flex;align-items:center;gap:7px;font-family:"Space Mono",monospace;font-size:0.63rem;color:var(--muted);letter-spacing:.08em;margin-bottom:10px;}
+.video-label-row::before{content:"";width:7px;height:7px;border-radius:50%;background:#e03030;animation:blink 1.5s infinite;flex-shrink:0;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-
-.video-wrap{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border-hi);background:#000;cursor:pointer;aspect-ratio:16/9;box-shadow:0 8px 32px rgba(0,0,0,0.5);transition:box-shadow .25s,transform .25s;}
-.video-wrap:hover{box-shadow:0 16px 48px rgba(0,198,224,0.25);transform:translateY(-3px);}
+.video-wrap{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border-hi);background:#000;cursor:pointer;aspect-ratio:16/9;box-shadow:0 12px 40px rgba(0,0,0,0.5);transition:box-shadow .25s,transform .25s;}
+.video-wrap:hover{box-shadow:0 20px 60px rgba(0,198,224,0.2);transform:translateY(-3px);}
 .video-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s;}
 .video-wrap:hover img{opacity:.8;}
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
-.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(0,198,224,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 4px 20px rgba(0,198,224,0.4);transition:transform .2s,background .2s;}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(0,198,224,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 4px 20px rgba(0,198,224,.4);transition:transform .2s,background .2s;}
 .video-wrap:hover .play-btn{background:var(--cyan);transform:translate(-50%,-50%) scale(1.1);}
 .play-btn svg{margin-left:5px;}
-.hero-info-pill{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--gray-mid);margin-top:10px;letter-spacing:0.03em;}
+.hero-info-pill{margin-top:10px;display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-family:"Space Mono",monospace;font-size:0.65rem;color:var(--muted);}
 
-/* 좌측 콘텐츠 (khp-loc hero-content 그대로) */
-.hero-content{position:relative;z-index:2;max-width:560px;}
+/* ── 섹션 공통 ── */
+.section{position:relative;z-index:1;padding:90px 6vw;max-width:1100px;margin:0 auto;}
+.section-alt{position:relative;z-index:1;padding:90px 6vw;background:rgba(255,255,255,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.section-alt .inner{max-width:1100px;margin:0 auto;}
 
-.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;animation:fadeUp .6s ease both;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.hbadge{display:inline-flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;padding:5px 14px;border-radius:4px;border:1px solid;}
-.hbadge.b-cyan{color:var(--cyan);border-color:rgba(0,198,224,0.35);background:rgba(0,198,224,0.08);}
-.hbadge.b-cyan::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 1.8s infinite;flex-shrink:0;}
-.hbadge.b-orange{background:var(--orange);color:#fff;border-color:var(--orange);}
-.hbadge.b-orange::before{content:'🎓';font-size:0.7rem;}
+.sec-eyebrow{font-family:"Space Mono",monospace;font-size:0.6rem;letter-spacing:.2em;color:var(--cyan);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.sec-eyebrow::before{content:"";width:24px;height:1px;background:var(--cyan);}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:14px;color:var(--text);}
+.sec-desc{color:var(--muted);font-size:0.9rem;line-height:1.75;max-width:600px;margin-bottom:52px;}
 
-.hero-title{
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(2.2rem,4.5vw,3.8rem);
-  font-weight:900;line-height:1.12;
-  letter-spacing:-0.02em;
-  margin-bottom:16px;
-  animation:fadeUp .7s ease .1s both;
-}
-.line-white{display:block;color:var(--white);}
-.line-cyan{display:block;color:var(--cyan);text-shadow:0 0 30px rgba(0,198,224,0.35);}
-.line-sub{display:block;font-size:0.42em;font-weight:700;color:var(--gray-mid);margin-top:10px;letter-spacing:0.04em;font-family:'Space Mono',monospace;}
-
-.hero-tagline{font-family:'Noto Serif KR',serif;font-size:1rem;color:var(--orange-light);margin-bottom:14px;font-style:italic;animation:fadeUp .7s ease .15s both;}
-
-.hero-desc{font-size:0.92rem;color:var(--gray-mid);line-height:1.75;margin-bottom:32px;max-width:500px;animation:fadeUp .7s ease .2s both;}
-
-.hero-tags{display:flex;gap:8px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both;}
-.htag{font-size:0.68rem;font-weight:700;padding:5px 14px;border-radius:4px;border:1px solid;letter-spacing:0.06em;}
-.htag.c1{color:var(--cyan);border-color:rgba(0,198,224,0.35);background:rgba(0,198,224,0.08);}
-.htag.c2{color:#00e5a0;border-color:rgba(0,229,160,0.35);background:rgba(0,229,160,0.08);}
-.htag.c3{color:var(--orange-light);border-color:rgba(255,140,66,0.35);background:rgba(255,107,26,0.08);}
-
-/* ── SECTIONS ── */
-.programs-section{position:relative;z-index:1;padding:80px 6vw;max-width:1100px;margin:0 auto;}
-.section-full{position:relative;z-index:1;padding:80px 6vw;background:rgba(255,255,255,0.025);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.section-full .inner{max-width:1100px;margin:0 auto;}
-.info-section{position:relative;z-index:1;padding:80px 6vw;max-width:1100px;margin:0 auto;}
-
-.sec-label{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;color:var(--cyan);margin-bottom:12px;display:block;}
-.sec-divider{width:48px;height:3px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px;margin-bottom:16px;}
-.sec-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;line-height:1.2;margin-bottom:12px;color:var(--white);}
-.sec-desc{color:var(--gray-mid);font-size:0.9rem;line-height:1.7;max-width:560px;margin-bottom:48px;}
-
-/* ── PROGRAM CARDS ── */
-.prog-group{margin-bottom:48px;}
-.prog-group-label{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.prog-group-label .gl-text{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;color:var(--gray-mid);white-space:nowrap;}
-.prog-group-label::after{content:'';flex:1;height:1px;background:var(--border);}
-.prog-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+/* ── 프로그램 카드 2단 ── */
+.prog-group{margin-bottom:52px;}
+.prog-group-label{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.gl-text{font-family:"Space Mono",monospace;font-size:0.6rem;letter-spacing:.18em;color:var(--muted);white-space:nowrap;}
+.prog-group-label::after{content:"";flex:1;height:1px;background:var(--border);}
+.prog-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media(max-width:720px){.prog-cards{grid-template-columns:1fr;}}
 
-.pcard{display:flex;align-items:stretch;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--white);position:relative;transition:border-color .22s,transform .22s,box-shadow .22s;}
-.pcard:hover{border-color:var(--border-hi);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.3);}
-.pcard.disabled{opacity:.5;pointer-events:none;}
-.pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 2px 2px 0;}
+.pcard{display:flex;align-items:stretch;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--text);position:relative;transition:border-color .22s,transform .22s,box-shadow .22s;}
+.pcard:hover{border-color:var(--border-hi);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.35);}
+.pcard.disabled{opacity:.45;pointer-events:none;}
+.pcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;}
 .pcard.col-blue::before{background:var(--cyan);}
-.pcard.col-green::before{background:#00e5a0;}
+.pcard.col-green::before{background:var(--green);}
 .pcard.col-orange::before{background:var(--orange);}
-.pcard.col-purple::before{background:#9b6dff;}
-.pcard.col-yellow::before{background:#ffd166;}
-.pcard.col-pink::before{background:#ff4d8d;}
-.pcard-num{width:54px;min-width:54px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:1.4rem;font-weight:700;opacity:.2;color:var(--cyan);}
-.pcard.col-green .pcard-num{color:#00e5a0;}
+.pcard.col-purple::before{background:var(--purple);}
+.pcard.col-yellow::before{background:var(--yellow);}
+.pcard.col-pink::before{background:var(--pink);}
+.pcard-num{width:52px;min-width:52px;display:flex;align-items:center;justify-content:center;font-family:"Space Mono",monospace;font-size:1.3rem;font-weight:700;opacity:.18;color:var(--cyan);}
+.pcard.col-green .pcard-num{color:var(--green);}
 .pcard.col-orange .pcard-num{color:var(--orange);}
-.pcard.col-purple .pcard-num{color:#9b6dff;}
-.pcard.col-yellow .pcard-num{color:#ffd166;}
-.pcard.col-pink .pcard-num{color:#ff4d8d;}
-.pcard-icon{width:48px;min-width:48px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;}
-.pcard-body{flex:1;padding:18px 14px 18px 0;}
-.pcard-top{display:flex;align-items:center;gap:10px;margin-bottom:5px;flex-wrap:wrap;}
-.pcard-title{font-size:0.92rem;font-weight:700;color:var(--white);line-height:1.3;}
-.pcard-status{font-family:'Space Mono',monospace;font-size:0.56rem;font-weight:700;letter-spacing:0.12em;padding:3px 9px;border-radius:4px;white-space:nowrap;}
-.status-live{background:rgba(0,229,160,0.12);color:#00e5a0;border:1px solid rgba(0,229,160,0.3);}
-.status-live::before{content:'● ';animation:blink 1.5s infinite;}
-.status-soon{background:rgba(255,209,102,0.08);color:#ffd166;border:1px solid rgba(255,209,102,0.2);}
-.pcard-desc{font-size:0.78rem;color:var(--gray-mid);line-height:1.6;margin-bottom:8px;}
+.pcard.col-purple .pcard-num{color:var(--purple);}
+.pcard.col-yellow .pcard-num{color:var(--yellow);}
+.pcard.col-pink .pcard-num{color:var(--pink);}
+.pcard-icon{width:46px;min-width:46px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.pcard-body{flex:1;padding:16px 12px 16px 0;}
+.pcard-top{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap;}
+.pcard-title{font-size:0.88rem;font-weight:700;color:var(--text);line-height:1.3;}
+.pcard-status{font-family:"Space Mono",monospace;font-size:0.54rem;font-weight:700;letter-spacing:.12em;padding:2px 8px;border-radius:4px;white-space:nowrap;}
+.status-live{background:rgba(0,229,160,.12);color:var(--green);border:1px solid rgba(0,229,160,.3);}
+.status-live::before{content:"● ";animation:blink 1.5s infinite;}
+.status-soon{background:rgba(255,209,102,.08);color:var(--yellow);border:1px solid rgba(255,209,102,.2);}
+.pcard-desc{font-size:0.76rem;color:var(--muted);line-height:1.6;margin-bottom:8px;}
 .pcard-chips{display:flex;gap:5px;flex-wrap:wrap;}
-.chip{font-size:0.6rem;font-weight:700;padding:2px 9px;border-radius:4px;background:rgba(255,255,255,0.05);color:var(--gray-mid);border:1px solid rgba(255,255,255,0.08);font-family:'Space Mono',monospace;letter-spacing:0.04em;}
-.pcard-arrow{display:flex;align-items:center;padding-right:18px;font-size:1rem;color:var(--gray-mid);opacity:.3;transition:opacity .2s,transform .2s;}
+.chip{font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.05);color:var(--muted);border:1px solid rgba(255,255,255,.08);font-family:"Space Mono",monospace;}
+.pcard-arrow{display:flex;align-items:center;padding-right:16px;color:var(--muted);opacity:.3;transition:opacity .2s,transform .2s;}
 .pcard:hover .pcard-arrow{opacity:.9;color:var(--cyan);transform:translate(3px,-3px);}
 
 /* ── FEATURES ── */
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
-.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:26px 22px;transition:border-color .22s,transform .22s,box-shadow .22s;}
-.feat-card:hover{border-color:var(--border-hi);transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.3);}
-.feat-icon{font-size:2rem;margin-bottom:12px;display:block;}
-.feat-title{font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--white);}
-.feat-desc{font-size:0.78rem;color:var(--gray-mid);line-height:1.6;}
-.feat-tag{display:inline-block;margin-top:10px;font-family:'Space Mono',monospace;font-size:0.55rem;font-weight:700;letter-spacing:0.12em;padding:3px 9px;border-radius:4px;background:rgba(0,198,224,0.10);color:var(--cyan);border:1px solid rgba(0,198,224,0.25);}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:26px 22px;transition:border-color .22s,transform .22s,box-shadow .22s;position:relative;overflow:hidden;}
+.feat-card:hover{border-color:var(--border-hi);transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.3);}
+.feat-tag-top{font-family:"Space Mono",monospace;font-size:0.55rem;letter-spacing:.14em;color:var(--cyan);margin-bottom:10px;display:block;}
+.feat-icon{font-size:2rem;margin-bottom:10px;display:block;}
+.feat-title{font-size:0.88rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+.feat-desc{font-size:0.77rem;color:var(--muted);line-height:1.6;}
 
 /* ── INFO ── */
-.free-badge{background:rgba(0,198,224,0.06);border:1px solid rgba(0,198,224,0.2);border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px;margin-bottom:22px;}
-.free-badge .fb-icon{font-size:2rem;flex-shrink:0;}
-.free-badge h3{font-size:0.92rem;font-weight:700;color:var(--cyan);margin-bottom:4px;}
-.free-badge p{font-size:0.78rem;color:var(--gray-mid);line-height:1.55;}
+.free-badge{background:rgba(0,198,224,.06);border:1px solid rgba(0,198,224,.2);border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:20px;margin-bottom:24px;}
+.free-badge .fb-icon{font-size:2.2rem;flex-shrink:0;}
+.free-badge h3{font-size:0.95rem;font-weight:700;color:var(--cyan);margin-bottom:5px;}
+.free-badge p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
-.info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px;}
-.info-card .ic-label{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:var(--cyan);margin-bottom:12px;}
-.ic-item{font-size:0.8rem;color:var(--gray-light);display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 24px;}
+.ic-label{font-family:"Space Mono",monospace;font-size:0.58rem;letter-spacing:.16em;color:var(--cyan);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.ic-label::before{content:"";width:16px;height:1px;background:var(--cyan);}
+.ic-item{font-size:0.8rem;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);}
 .ic-item:last-child{border-bottom:none;}
-.ic-item::before{content:'›';color:var(--cyan);font-weight:700;flex-shrink:0;}
+.ic-item::before{content:"›";color:var(--cyan);font-weight:700;flex-shrink:0;}
 
 /* ── CONTACT ── */
-.contact-section{position:relative;z-index:1;background:linear-gradient(135deg,#030609 0%,#080c18 100%);padding:80px 6vw;text-align:center;border-top:1px solid var(--border);}
-.contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,198,224,0.08),transparent 70%);pointer-events:none;}
+.contact-section{position:relative;z-index:1;background:linear-gradient(160deg,#03060f 0%,#060b18 100%);padding:90px 6vw;text-align:center;border-top:1px solid var(--border);}
+.contact-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 50% 50%,rgba(0,198,224,.07),transparent 70%);pointer-events:none;}
 .contact-section .inner{max-width:700px;margin:0 auto;position:relative;z-index:1;}
-.contact-section .sec-desc{margin:0 auto 40px;}
-.ccard-wrap{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;}
-.ccard{background:rgba(255,255,255,0.04);border:1px solid rgba(0,198,224,0.15);border-radius:12px;padding:20px 22px;text-align:left;min-width:190px;flex:1;max-width:230px;transition:border-color .2s;}
-.ccard:hover{border-color:rgba(0,198,224,0.35);}
-.ccard .cc-icon{font-size:1.3rem;margin-bottom:8px;display:block;}
-.ccard .cc-label{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:.14em;color:var(--cyan);margin-bottom:5px;}
-.ccard .cc-val{font-size:0.86rem;color:var(--white);font-weight:600;}
-.ccard .cc-sub{font-size:0.7rem;color:var(--gray-mid);margin-top:3px;line-height:1.5;}
-.contact-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;padding:14px 36px;border-radius:8px;font-size:0.95rem;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(255,107,26,0.4);transition:transform .2s,box-shadow .2s;}
-.contact-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,107,26,0.5);}
+.contact-section .sec-desc{margin:0 auto 44px;color:var(--muted);}
+.ccard-wrap{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;}
+.ccard{background:rgba(255,255,255,.04);border:1px solid rgba(0,198,224,.15);border-radius:12px;padding:22px 24px;text-align:left;min-width:190px;flex:1;max-width:220px;transition:border-color .2s,transform .2s;}
+.ccard:hover{border-color:rgba(0,198,224,.35);transform:translateY(-3px);}
+.ccard .cc-icon{font-size:1.4rem;margin-bottom:10px;display:block;}
+.ccard .cc-label{font-family:"Space Mono",monospace;font-size:0.54rem;letter-spacing:.16em;color:var(--cyan);margin-bottom:6px;}
+.ccard .cc-val{font-size:0.85rem;color:var(--text);font-weight:600;}
+.ccard .cc-sub{font-size:0.7rem;color:var(--muted);margin-top:4px;line-height:1.5;}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff;padding:15px 40px;border-radius:8px;font-size:0.95rem;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(255,107,26,.4);transition:transform .2s,box-shadow .2s;letter-spacing:.02em;}
+.contact-btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(255,107,26,.5);}
 
 /* ── FOOTER ── */
-footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid rgba(255,255,255,0.05);}
-.footer-logo{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--gray-mid);}
-.footer-logo strong{color:var(--cyan);display:block;font-size:0.82rem;}
-.footer-links{display:flex;gap:22px;}
-.footer-links a{color:var(--gray-mid);text-decoration:none;font-size:0.75rem;transition:color .2s;}
-.footer-links a:hover{color:var(--cyan);}
-.footer-copy{font-size:0.68rem;color:rgba(143,163,200,0.4);font-family:'Space Mono',monospace;}
+footer{position:relative;z-index:1;background:#020408;padding:28px 6vw;text-align:center;border-top:1px solid rgba(255,255,255,.05);}
+.footer-inner{max-width:700px;margin:0 auto;}
+.footer-logo{font-family:"Space Mono",monospace;font-size:0.72rem;color:var(--muted);margin-bottom:6px;}
+.footer-logo strong{color:var(--cyan);}
+.footer-copy{font-size:0.65rem;color:rgba(120,154,184,.35);margin-top:4px;}
 
+/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-@media(max-width:600px){.programs-section,.info-section,.section-full{padding:60px 5vw;}}
+@media(max-width:600px){.section,.section-alt{padding:64px 5vw;}}
 </style>
 </head>
 <body>
+
 <nav>
   <div class="nav-logo">
-    <strong>재능대학교 K-하이테크플랫폼사업단</strong>
-    KHP Training Program HUB
+    <strong>재능대학교</strong> K-하이테크플랫폼사업단 HUB
   </div>
   <ul class="nav-links">
     <li><a href="#programs">교육과정</a></li>
@@ -224,52 +196,53 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
     <li><a href="#info">지원안내</a></li>
     <li><a href="#contact">문의·신청</a></li>
   </ul>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" rel="noopener" class="nav-cta">교육 신청 문의 →</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" class="nav-cta">교육 신청 문의 →</a>
 </nav>
-<div class="hero" id="home">
-  <!-- 좌측 콘텐츠 -->
+
+<!-- ── HERO ── -->
+<div style="position:relative;z-index:1;"><div class="hero" id="home">
   <div class="hero-content">
-    <div class="hero-badges">
-      <span class="hbadge b-cyan">재직자 환급과정 · 교육비 무료</span>
-      <span class="hbadge b-orange">수강료 전액 지원</span>
-    </div>
+    <div class="hero-eyebrow">K-HITECH TRAINING PROGRAM HUB · JEI UNIVERSITY</div>
     <h1 class="hero-title">
-      <span class="line-white">랩온어칩 · 바이오분석</span>
-      <span class="line-cyan">의료설계 · 시뮬레이션</span>
-      <span class="line-sub">K-하이테크플랫폼 실무교육 허브</span>
+      <span class="t1">랩온어칩 · 바이오분석</span>
+      <span class="t2">의료설계 · 시뮬레이션</span>
+      <span class="t3">실무교육 허브</span>
     </h1>
+    <p class="hero-tagline">설계부터 분석까지, 현장에서 바로 쓰는 바이오 실무 기술!</p>
     <p class="hero-desc">바이오·의료기기·진단·제약 분야에서 활용되는 랩온어칩, ELISA, HPLC, SPR 기반 바이오분석 실무교육 프로그램입니다. 현장 이론교육과 장비 실습 후, AI 복습 시뮬레이터로 반복 학습이 가능합니다.</p>
-    <div class="hero-tags">
-      <span class="htag c1">재직자 환급과정</span>
-      <span class="htag c2">미래인재양성</span>
-      <span class="htag c3">교사·학생 대상</span>
+    <div class="hero-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" class="btn-primary">📋 교육 신청 문의하기</a>
+      <a href="#programs" class="btn-secondary">교육과정 보기</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">6+</div><div class="hstat-label">전문 교육과정</div></div>
+      <div class="hstat"><div class="hstat-num">₩0</div><div class="hstat-label">수강료 (환급과정)</div></div>
+      <div class="hstat"><div class="hstat-num">AI</div><div class="hstat-label">SOP 복습 시뮬레이터</div></div>
     </div>
   </div>
 
-  <!-- 우측 영상 (absolute) -->
+  <!-- 우측 영상 -->
   <div class="hero-video-col">
     <div class="video-label-row">K-하이테크플랫폼 소개 영상</div>
     <div class="video-wrap" id="yt-player" onclick="loadYT()">
-      <img src="https://img.youtube.com/vi/cgj73K86CjQ/maxresdefault.jpg" alt="KHP 소개 영상" onerror="this.src='https://img.youtube.com/vi/cgj73K86CjQ/hqdefault.jpg'"/>
-      <div class="play-btn"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><polygon points="6,4 20,11 6,18" fill="#fff"/></svg></div>
+      <img src="https://img.youtube.com/vi/cgj73K86CjQ/maxresdefault.jpg" alt="KHP 소개" onerror="this.src='https://img.youtube.com/vi/cgj73K86CjQ/hqdefault.jpg'"/>
+      <div class="play-btn"><svg width="22" height="22" viewBox="0 0 22 22"><polygon points="6,4 20,11 6,18" fill="#fff"/></svg></div>
     </div>
     <div class="hero-info-pill">🏫 재능대학교 바이오테크과 · AI-바이오분석특화연구소</div>
-    <div class="hero-info-pill" style="margin-top:6px;">⚙️ K-하이테크플랫폼사업단</div>
+    <div class="hero-info-pill" style="margin-top:6px">⚙️ K-하이테크플랫폼사업단</div>
   </div>
-</div>
-
+</div></div>
 
 <!-- ── PROGRAMS ── -->
-<div class="programs-section" id="programs">
+<div class="section" id="programs">
   <div class="reveal">
-    <span class="sec-label">// TRAINING PROGRAMS</span>
-    <div class="sec-divider"></div>
+    <div class="sec-eyebrow">TRAINING PROGRAMS</div>
     <h2 class="sec-title">전문 훈련과정</h2>
     <p class="sec-desc">랩온어칩 · 바이오분석 · 의료설계 · 시뮬레이션 4개 영역의 실무 중심 교육과정입니다.</p>
   </div>
 
   <div class="prog-group reveal">
-    <div class="prog-group-label"><span class="gl-text">// 01 · LAB-ON-A-CHIP</span></div>
+    <div class="prog-group-label"><span class="gl-text">01 · LAB-ON-A-CHIP</span></div>
     <div class="prog-cards">
       <a class="pcard col-blue" href="https://circlenam.github.io/khp-loc/" target="_blank" rel="noopener">
         <div class="pcard-num">01</div><div class="pcard-icon">🔬</div>
@@ -279,13 +252,12 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
           <div class="pcard-chips"><span class="chip">Fusion 360</span><span class="chip">3D프린팅</span><span class="chip">PDMS</span><span class="chip">마이크로플루이딕스</span></div>
         </div><div class="pcard-arrow">↗</div>
       </a>
-      <!-- 우측 빈 자리 채움용 더미 (1단 그룹은 span) -->
-      <div style="visibility:hidden;pointer-events:none;" class="pcard"></div>
+      <div class="pcard" style="visibility:hidden;pointer-events:none;border:none;background:none;box-shadow:none;"></div>
     </div>
   </div>
 
   <div class="prog-group reveal">
-    <div class="prog-group-label"><span class="gl-text">// 02 · 바이오분석 교육</span></div>
+    <div class="prog-group-label"><span class="gl-text">02 · 바이오분석 교육</span></div>
     <div class="prog-cards">
       <a class="pcard col-green" href="https://circlenam.github.io/elisa/" target="_blank" rel="noopener">
         <div class="pcard-num">02</div><div class="pcard-icon">🧫</div>
@@ -295,14 +267,14 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
           <div class="pcard-chips"><span class="chip">ELISA</span><span class="chip">바이오마커</span><span class="chip">SOP</span><span class="chip">AI 복습</span></div>
         </div><div class="pcard-arrow">↗</div>
       </a>
-      <div class="pcard col-orange disabled">
+      <a class="pcard col-orange" href="https://circlenam.github.io/hplc/" target="_blank" rel="noopener">
         <div class="pcard-num">03</div><div class="pcard-icon">⚗️</div>
         <div class="pcard-body">
-          <div class="pcard-top"><div class="pcard-title">HPLC 이론 및 실습교육 — 함량분석·불순도평가·밸리데이션</div><span class="pcard-status status-soon">COMING SOON</span></div>
-          <div class="pcard-desc">RP·SEC 컬럼 실습, 표준품 분석, 시험분석법 밸리데이션(ICH Q2) 및 SOP 게임 복습.</div>
-          <div class="pcard-chips"><span class="chip">HPLC</span><span class="chip">RP Column</span><span class="chip">SEC</span><span class="chip">ICH Q2</span></div>
+          <div class="pcard-top"><div class="pcard-title">HPLC 이론 및 실습교육 — 함량분석·불순도평가·밸리데이션</div><span class="pcard-status status-live">LIVE</span></div>
+          <div class="pcard-desc">RP·SEC 컬럼 실습, 표준품 분석, 시험분석법 밸리데이션(ICH Q2) 및 AI SOP 복습.</div>
+          <div class="pcard-chips"><span class="chip">HPLC</span><span class="chip">RP Column</span><span class="chip">SEC</span><span class="chip">ICH Q2</span><span class="chip">Validation</span></div>
         </div><div class="pcard-arrow">↗</div>
-      </div>
+      </a>
       <div class="pcard col-purple disabled">
         <div class="pcard-num">04</div><div class="pcard-icon">📡</div>
         <div class="pcard-body">
@@ -311,13 +283,12 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
           <div class="pcard-chips"><span class="chip">SPR</span><span class="chip">단백질정량</span><span class="chip">바이오센서</span></div>
         </div><div class="pcard-arrow">↗</div>
       </div>
-      <!-- 빈자리 -->
-      <div style="visibility:hidden;pointer-events:none;" class="pcard"></div>
+      <div class="pcard" style="visibility:hidden;pointer-events:none;border:none;background:none;box-shadow:none;"></div>
     </div>
   </div>
 
   <div class="prog-group reveal">
-    <div class="prog-group-label"><span class="gl-text">// 03 · 시뮬레이션 · 설계</span></div>
+    <div class="prog-group-label"><span class="gl-text">03 · 시뮬레이션 · 설계</span></div>
     <div class="prog-cards">
       <div class="pcard col-yellow disabled">
         <div class="pcard-num">05</div><div class="pcard-icon">🏭</div>
@@ -340,30 +311,28 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
 </div>
 
 <!-- ── FEATURES ── -->
-<div class="section-full" id="features">
+<div class="section-alt" id="features">
   <div class="inner">
     <div class="reveal">
-      <span class="sec-label">// 교육 특징</span>
-      <div class="sec-divider"></div>
+      <div class="sec-eyebrow">교육 특징</div>
       <h2 class="sec-title">현장 중심 집중 실습</h2>
       <p class="sec-desc">단순 이론 강의를 넘어, 실제 바이오·진단 현장에서 즉시 활용 가능한 실무 역량을 키웁니다.</p>
     </div>
     <div class="feat-grid reveal">
-      <div class="feat-card"><span class="feat-icon">🧪</span><div class="feat-title">실무 중심 장비 실습</div><div class="feat-desc">실제 연구·산업 현장 장비를 직접 운용하며 현장형 실무교육을 진행합니다.</div><span class="feat-tag">HANDS-ON</span></div>
-      <div class="feat-card"><span class="feat-icon">🤖</span><div class="feat-title">AI 복습 시뮬레이터 제공</div><div class="feat-desc">수료 후에도 AI 시뮬레이터를 통해 자기주도형 반복 학습이 가능합니다.</div><span class="feat-tag">AI REVIEW</span></div>
-      <div class="feat-card"><span class="feat-icon">💰</span><div class="feat-title">재직자 환급과정 — 교육비 무료</div><div class="feat-desc">고용보험 가입 재직자 대상 환급과정으로 운영되어 수강료 부담이 없습니다.</div><span class="feat-tag">FREE</span></div>
-      <div class="feat-card"><span class="feat-icon">📊</span><div class="feat-title">데이터 해석 중심 교육</div><div class="feat-desc">표준곡선, sensorgram, kinetics 데이터를 직접 해석하며 분석 역량을 내재화합니다.</div><span class="feat-tag">DATA ANALYSIS</span></div>
-      <div class="feat-card"><span class="feat-icon">🏭</span><div class="feat-title">무료 시작품 제작 지원</div><div class="feat-desc">3D프린터·미니사출기·LoC 몰드 등 보유 장비를 활용한 시작품 제작을 무료 지원합니다.</div><span class="feat-tag">PROTOTYPE</span></div>
-      <div class="feat-card"><span class="feat-icon">📜</span><div class="feat-title">수료증 발급</div><div class="feat-desc">과정 수료 후 재능대학교 K-하이테크플랫폼사업단 명의의 공식 수료증이 발급됩니다.</div><span class="feat-tag">CERTIFIED</span></div>
+      <div class="feat-card"><span class="feat-tag-top">HANDS-ON</span><span class="feat-icon">🧪</span><div class="feat-title">실무 중심 장비 실습</div><div class="feat-desc">실제 연구·산업 현장 장비를 직접 운용하며 현장형 실무교육을 진행합니다.</div></div>
+      <div class="feat-card"><span class="feat-tag-top">AI REVIEW</span><span class="feat-icon">🤖</span><div class="feat-title">AI 복습 시뮬레이터 제공</div><div class="feat-desc">수료 후에도 AI 시뮬레이터를 통해 자기주도형 반복 학습이 가능합니다.</div></div>
+      <div class="feat-card"><span class="feat-tag-top">FREE</span><span class="feat-icon">💰</span><div class="feat-title">재직자 환급과정 — 교육비 무료</div><div class="feat-desc">고용보험 가입 재직자 대상 환급과정으로 운영되어 수강료 부담이 없습니다.</div></div>
+      <div class="feat-card"><span class="feat-tag-top">DATA ANALYSIS</span><span class="feat-icon">📊</span><div class="feat-title">데이터 해석 중심 교육</div><div class="feat-desc">표준곡선, sensorgram, kinetics 데이터를 직접 해석하며 분석 역량을 내재화합니다.</div></div>
+      <div class="feat-card"><span class="feat-tag-top">PROTOTYPE</span><span class="feat-icon">🏭</span><div class="feat-title">무료 시작품 제작 지원</div><div class="feat-desc">3D프린터·미니사출기·LoC 몰드 등 보유 장비를 활용한 시작품 제작을 무료 지원합니다.</div></div>
+      <div class="feat-card"><span class="feat-tag-top">CERTIFIED</span><span class="feat-icon">📜</span><div class="feat-title">수료증 발급</div><div class="feat-desc">과정 수료 후 재능대학교 K-하이테크플랫폼사업단 명의의 공식 수료증이 발급됩니다.</div></div>
     </div>
   </div>
 </div>
 
 <!-- ── INFO ── -->
-<div class="info-section" id="info">
+<div class="section" id="info">
   <div class="reveal">
-    <span class="sec-label">// 지원 안내</span>
-    <div class="sec-divider"></div>
+    <div class="sec-eyebrow">지원 안내</div>
     <h2 class="sec-title">이런 분들을 위한 과정입니다</h2>
     <p class="sec-desc">바이오·의료·화학·진단 분야 종사자라면 누구나 신청 가능합니다.</p>
   </div>
@@ -373,14 +342,14 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
   </div>
   <div class="info-grid reveal">
     <div class="info-card">
-      <div class="ic-label">// 교육 대상</div>
+      <div class="ic-label">교육 대상</div>
       <div class="ic-item">바이오·의료·화학·진단 분야 재직자</div>
       <div class="ic-item">미래인재양성 교사</div>
       <div class="ic-item">고등학교 / 대학교 / 대학원생</div>
       <div class="ic-item">IVD·마이크로플루이딕스 스타트업</div>
     </div>
     <div class="info-card">
-      <div class="ic-label">// 지원 내용</div>
+      <div class="ic-label">지원 내용</div>
       <div class="ic-item">재직자 환급과정 (수강료 무료)</div>
       <div class="ic-item">AI 복습 시뮬레이터 제공</div>
       <div class="ic-item">수료증 발급</div>
@@ -393,10 +362,9 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
 <div class="contact-section" id="contact">
   <div class="inner">
     <div class="reveal">
-      <span class="sec-label">// 문의 · 신청</span>
-      <div class="sec-divider" style="background:linear-gradient(90deg,rgba(0,198,224,0.6),transparent);margin:0 auto 16px;"></div>
+      <div class="sec-eyebrow" style="justify-content:center;">문의 · 신청</div>
       <h2 class="sec-title">지금 바로 신청하세요</h2>
-      <p class="sec-desc">교육 신청, 일정 협의, 환급과정 관련 문의는 아래 채널을 통해 연락 주시기 바랍니다.</p>
+      <p class="sec-desc">교육 신청, 일정 협의, 환급과정 관련 문의는 아래 채널을 통해 연락 주시기 바랍니다. 바이오분석 교육운영팀이 신속히 안내드립니다.</p>
     </div>
     <div class="ccard-wrap reveal">
       <div class="ccard"><span class="cc-icon">📧</span><div class="cc-label">EMAIL</div><div class="cc-val">namjh@jeiu.ac.kr</div><div class="cc-sub">문의 당일 내 답변 가능</div></div>
@@ -404,56 +372,43 @@ footer{position:relative;z-index:1;background:#030508;padding:30px 6vw;display:f
       <div class="ccard"><span class="cc-icon">📍</span><div class="cc-label">LOCATION</div><div class="cc-val">재능대학교 혁신관 1층</div><div class="cc-sub">인천광역시 · 제물포역 도보 15분</div></div>
     </div>
     <div class="reveal">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" rel="noopener" class="contact-btn">📋 교육 신청 문의하기</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd81kdOP_xEvw6zx1spXd8CZuEJ6TKH1tXiuf4f6UNAU0WdUg/viewform" target="_blank" rel="noopener" class="contact-btn">APPLY NOW &nbsp; 교육 신청 문의하기 →</a>
     </div>
   </div>
 </div>
 
 <!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-logo">
-    <strong>재능대학교 K-하이테크플랫폼사업단</strong>
-    JEI University · K-Hitech Platform
+  <div class="footer-inner">
+    <div class="footer-logo"><strong>재능대학교</strong> 바이오테크과 · AI-바이오분석특화연구소 · K-하이테크플랫폼사업단</div>
+    <div class="footer-copy">JEI University · Dept. of Biotechnology · Incheon, Korea &nbsp;|&nbsp; © 2026 KHP Program</div>
   </div>
-  <div class="footer-links">
-    <a href="#programs">교육과정</a>
-    <a href="#features">교육특징</a>
-    <a href="#info">지원안내</a>
-    <a href="mailto:namjh@jeiu.ac.kr">이메일 문의</a>
-  </div>
-  <div class="footer-copy">© 2026 재능대학교 K-하이테크플랫폼사업단. All rights reserved.</div>
 </footer>
 
 <script>
-function loadYT() {
-  var el = document.getElementById('yt-player');
-  var iframe = document.createElement('iframe');
-  iframe.src = 'https://www.youtube.com/embed/cgj73K86CjQ?autoplay=1&mute=1&rel=0&modestbranding=1';
-  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-  iframe.allowFullscreen = true;
-  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
-  el.innerHTML = ''; el.appendChild(iframe); el.onclick = null;
+function loadYT(){
+  var el=document.getElementById('yt-player');
+  var f=document.createElement('iframe');
+  f.src='https://www.youtube.com/embed/cgj73K86CjQ?autoplay=1&mute=1&rel=0&modestbranding=1';
+  f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  f.allowFullscreen=true;
+  f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:none;';
+  el.innerHTML='';el.appendChild(f);el.onclick=null;
 }
-window.addEventListener('load', loadYT);
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
-}, {threshold:0.08});
-reveals.forEach(el => obs.observe(el));
-document.querySelectorAll('.prog-cards,.feat-grid').forEach(grid => {
-  Array.from(grid.children).forEach((card,i) => {
-    if(card.style.visibility==='hidden') return;
-    card.style.transitionDelay=(i*0.07)+'s';
-    card.style.opacity='0'; card.style.transform='translateY(14px)';
-    card.style.transition='opacity .45s ease,transform .45s ease,border-color .22s,box-shadow .22s';
+window.addEventListener('load',loadYT);
+
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+document.querySelectorAll('.prog-cards,.feat-grid').forEach(grid=>{
+  Array.from(grid.children).forEach((c,i)=>{
+    if(c.style.visibility==='hidden')return;
+    c.style.transitionDelay=(i*.07)+'s';
+    c.style.opacity='0';c.style.transform='translateY(14px)';
+    c.style.transition='opacity .45s ease,transform .45s ease,border-color .22s,box-shadow .22s';
   });
-  new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting) Array.from(e.target.children).forEach(c=>{c.style.opacity='1';c.style.transform='translateY(0)';});
-    });
-  },{threshold:0.08}).observe(grid);
+  new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)Array.from(e.target.children).forEach(c=>{c.style.opacity='1';c.style.transform='translateY(0)';});});},{threshold:.08}).observe(grid);
 });
 </script>
-
 </body>
 </html>
